@@ -1,14 +1,16 @@
+let categoryWiseData;
 const handleCategory = async () => {
     const res = await fetch('https://openapi.programming-hero.com/api/videos/categories');
     const data = await res.json();
     const categories = data.data;
-    // console.log(categories);
     showCategory(categories);
 }
 
 const showCategory = (categories) => {
-    const categoryTabContainer = document.getElementById('tab-container');
+    // console.log(categories);
 
+    const categoryTabContainer = document.getElementById('tab-container');
+    
     categories.forEach(category => {
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML = `
@@ -24,9 +26,21 @@ const handleCategoryVideo = async (categoryId) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryId}`);
     const data = await res.json();
     const videoData = data.data;
-    // console.log(videoData);
     showCategoryVideo(videoData);
+
+    const sortByViewContainer = document.getElementById('sort-by-view-container');
+    sortByViewContainer.innerHTML = '';
+
+    // console.log(videoData);
+    const sortByViewDiv = document.createElement('div');
+    sortByViewDiv.innerHTML = `
+        <button onclick="sortByView('${categoryId}')" class="px-5 py-3 rounded-lg font-medium bg-slate-200 hover:bg-red-500 text-gray-800 hover:text-white ">Sort By View</button>
+        `;
+    sortByViewContainer.appendChild(sortByViewDiv);
+
 }
+
+
 
 
 const showCategoryVideo = (videoData) => {
@@ -34,7 +48,7 @@ const showCategoryVideo = (videoData) => {
     const videoCardDiv2 = document.getElementById('no-video-card');
     videoCardDiv.innerHTML = '';
     videoCardDiv2.innerHTML = '';
-    // console.log(videoData);
+
 
     if (videoData.length === 0) {
         const videoDiv = document.createElement('div');
@@ -44,13 +58,28 @@ const showCategoryVideo = (videoData) => {
         `;
 
         videoCardDiv2.appendChild(videoDiv);
-
     }
+
+
+    const convertTime = (seconds) => {
+        const totalMinutes = Math.floor(seconds / 60);
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+        return `<div class="absolute right-16 md:right-9 lg:right-2 bottom-2 bg-black rounded-md">
+                    <p class="text-white font-normal text-xs px-2 py-1">${hours} hrs ${minutes} mins ago</p>
+                </div>`;
+    }
+
+
     videoData.forEach(video => {
         const videoDiv = document.createElement('div');
 
         videoDiv.innerHTML = `
+        <div class="relative">
             <figure><img class="w-80 h-52 rounded-md" src="${video?.thumbnail}" alt="" /></figure>
+            ${video?.others?.posted_date ? convertTime(parseInt(video?.others?.posted_date)) : ''}
+            
+        </div>
             <div class="card-body">
                 <div class="flex gap-2">
                     <div>
@@ -64,7 +93,7 @@ const showCategoryVideo = (videoData) => {
                         <h2 class="card-title text-lg">${video?.title}</h2>
                         <div class="flex flex-row gap-2">
                             <small>${video?.authors[0]?.profile_name}</small>
-                            <small>${`${video?.authors[0]?.verified}`== 'true' ? '<img src="./images/verified.svg" alt="">' : ''}</small>
+                            <small>${`${video?.authors[0]?.verified}` == 'true' ? '<img src="./images/verified.svg" alt="">' : ''}</small>
                         </div>
                         <small>${video?.others?.views} views</small>
                         <h6></h6>
@@ -72,12 +101,26 @@ const showCategoryVideo = (videoData) => {
                 </div>
             </div>
         `;
-        console.log(video?.authors[0]?.verified);
 
         videoCardDiv.appendChild(videoDiv);
     })
 }
 
+
+const sortByView = async (categoryId) => {
+
+    const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryId}`);
+    const data = await res.json();
+    const videoData = data.data;
+
+    let sortedVideoData = videoData.sort(
+        (data1, data2) => parseFloat(data2?.others?.views) - parseFloat(data1?.others?.views)
+    );
+
+    showCategoryVideo(sortedVideoData);
+    
+    
+}
 
 
 
