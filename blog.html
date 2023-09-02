@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/favicon.svg" type="image/x-icon">
+
+    <title>PH Tube Blogs</title>
+
+    <!-- tailwind & daisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <body class="max-w-screen-xl lg:mx-auto mx-5">
+        <div>
+            <!-- scope of var, let, const -->
+            <section class="mt-10">
+                <h2 class="text-5xl font-bold">Scope of var, let, and const</h2>
+                <h4 class="text-3xl mt-7">Function-scope vs. Block-scope</h4>
+                <p class="mt-2">Before we get find out the scope type of let and var and const in javascript, let us
+                    learn some of the differences between function-scope and block-scope:</p>
+                <h5 class="text-2xl">Scope</h5>
+                <p>Scope stands for where our variable will be available to use inside our code and where it will not.
+                    <br>
+                    Let's take an example to understand it -
+                </p>
+                <img src="./images/scope1.PNG" alt="">
+                <p>In the example, we have a function myFun(); inside the function, we declare a variable myName and
+                    print
+                    the variable myName on the console.
+                    <br>
+                    When we call our function myFun it successfully prints the value of variable myName on the console,
+                    but
+                    when we try to print the variable myName outside the function, it throws referenceError because
+                    variable
+                    myName has a function scope that's why it's not accessible outside the function.
+                </p>
+
+                <h5 class="text-2xl">Function Scope</h5>
+                <p>Variable having Function-scope means variable will only be available to use inside the function it
+                    declared, will not be accessible outside of function, and will give Reference Error if we try to
+                    access.
+                    <br>
+                    Here is an example -
+                </p>
+                <img src="./images/scope2.PNG" alt="">
+                <p>In the example, we make a function name() then we declare a variablemyAge inside the function, when
+                    we
+                    call the function, it prints the myAge variable on the console, But when we try to access the
+                    variable
+                    outside the function, it's throwing a Reference Error.</p>
+
+                <h5 class="text-2xl">Block Scope</h5>
+                <p>Block means a pair of curly brackets, a block can be anything that contains an opening and closing
+                    curly
+                    bracket.
+                    <br>
+                    Variable having Block-scope will only be available to use inside the block it declared, will not be
+                    accessible outside the block, and will give Reference Error if we try to access.
+                    <br>
+                    Here is an example -
+                </p>
+                <img src="./images/scope3.PNG" alt="">
+                <p>In the example above, we have an if block with a true condition, and inside the if block, we declare
+                    a variable name myName. Now when we try to print the myName variable to the console, it prints
+                    successfully, but when we try to print the variable outside the if block, we get a Reference Error.
+                </p>
+                <p>scope of var, let & const are shown in a table below:</p>
+
+                <img src="./images/scope4.PNG" alt="">
+            </section>
+
+            <!-- use cases of null and undefined -->
+            <section class="mt-16">
+                <h2 class="text-5xl font-bold">Tell us the use cases of null and undefined</h2>
+                <p class="mt-5">JavaScript uses null and undefined to represent missing or empty values, but they
+                    are used in different contexts and for different purposes. Here are the primary use cases for
+                    each:</p>
+
+                <div class="gap-y-4">
+                    <h4 class="text-3xl mt-7">Use Cases for 'null'</h4>
+                    <p class="mt-5"><span class="font-semibold">1. Explicitly Indicating Absence of Value:</span> You
+                        can assign
+                        'null' to a variable or property to explicitly indicate that it has no value or that it is
+                        empty. </p>
+                    <p class="mt-2"><span class="font-semibold">2. As a Placeholder for Future Values:</span> You might
+                        use 'null' as
+                        a temporary placeholder for a variable or property that will have a value assigned to it later.
+                    </p>
+                    <p class="mt-2"><span class="font-semibold">3. To Remove an Object Property:</span> Setting a
+                        property of an
+                        object to 'null' can be used to remove that property from the object. </p>
+                    <p class="mt-2"><span class="font-semibold">4. Clearing Object References: </span> You can set an
+                        object
+                        reference to 'null' when you no longer need it. This can be helpful for memory management, as it
+                        allows the JavaScript engine's garbage collector to reclaim memory used by the object.</p>
+                    <p class="mt-2"><span class="font-semibold">5. Default Values: </span>You can use 'null' as a
+                        default value in
+                        functions or expressions where you want to indicate that a value should be provided or
+                        initialized later.</p>
+                    <p class="mt-2"><span class="font-semibold">6. Array Initialization: </span>You can use 'null' to
+                        initialize an
+                        array where certain elements are intentionally empty or not yet defined.</p>
+                </div>
+
+                <div class="gap-y-4">
+                    <h4 class="text-3xl mt-7">Use Cases for 'undefined'</h4>
+
+                    <p class="mt-5"><span class="font-semibold">1. Default Value for Function Parameters: </span>If a function parameter is not provided when the function is called, it defaults to undefined. You can use this to check if an argument was passed.</p>
+                    <p class="mt-2"><span class="font-semibold">2. Variable Declarations Without Initialization: </span>Variables declared but not assigned a value are automatically initialized to undefined.
+                    </p>
+                    <p class="mt-2"><span class="font-semibold">3. Return Value of Functions: </span>If a function doesn't explicitly return a value, it returns undefined.</p>
+                    <p class="mt-2"><span class="font-semibold">4. Properties That Don't Exist: </span>If you try to access an object property that doesn't exist, it returns undefined.</p>
+                    <p class="mt-2"><span class="font-semibold">5. Testing for the Existence of Properties: </span>You can use undefined to check if a property exists within an object without triggering a "property not found" error.</p>
+                    <p class="mt-2"><span class="font-semibold">6. Optional Function Arguments: </span>When defining functions with optional parameters, you can check if a parameter is undefined to provide a default behavior.</p>
+                </div>
+            </section>
+
+            <!-- Rest API -->
+            <section class="mt-16">
+                <h2 class="text-5xl font-bold">What do you mean by REST API?</h2>
+                <p class="mt-5">Let's break down REST API in an easy way that we can grasp:</p>
+                <h4 class="text-3xl mt-7">What is a REST API?</h4>
+                <p class="mt-5">A REST API, or Representational State Transfer Application Programming Interface, is a way for different software applications to communicate and exchange data with each other over the internet. It's like a menu in a restaurant: you can see what dishes are available (the endpoints), order what you want (make requests), and get your food (receive data) in a standard and predictable way.</p>
+                
+
+                <div class="gap-y-4">
+                    <h4 class="text-3xl mt-7">Key Concepts of REST API:</h4>
+                    <p class="mt-5"><span class="font-semibold">1. Resources: </span>In the context of REST, resources are like items on the restaurant menu. They are the things you want to interact with, such as users, products, or articles.</p>
+                    <p class="mt-2"><span class="font-semibold">2. HTTP Methods: </span>REST APIs use standard HTTP methods to perform actions on resources. The most common methods are:
+                        <ul>
+                            <li>=> <span class="font-semibold">GET: </span>Retrieve data (like reading a menu).</li>
+                            <li>=> <span class="font-semibold">POST:</span> Create a new resource (like placing an order).</li>
+                            <li>=> <span class="font-semibold">PUT: </span>Update an existing resource (like modifying your order).</li>
+                            <li>=> <span class="font-semibold">DELETE:</span> Remove a resource (like canceling your order).</li>
+                        </ul>
+                    </p>
+                    <p class="mt-2"><span class="font-semibold">3. Endpoints: </span>Endpoints are the URLs (Uniform Resource Locators) that represent resources on the API. Think of them as the addresses to access specific items on the menu.</p>
+                    <p class="mt-2"><span class="font-semibold">4. Stateless: </span>REST is stateless, which means each request from a client to a server must contain all the information needed to understand and fulfill the request. It's like each order at a restaurant doesn't rely on previous orders; it includes all the details.</p>
+                    <p class="mt-2"><span class="font-semibold">5. JSON (or XML) Data: </span>Data exchanged between the client and server is often in a format called JSON (JavaScript Object Notation) or XML (eXtensible Markup Language). JSON is like the language both the restaurant and the customer understand.</p>
+
+                </div>
+            </section>
+
+        </div>
+    </body>
+</body>
+
+</html>
